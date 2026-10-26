@@ -2,7 +2,7 @@ import sqlite3
 import os
 import yfinance as yf
 import pandas as pd
-from database import DB_PATH, init_db
+from .database import DB_PATH, init_db
 
 def fetch_and_save_market_data():
     init_db()

@@ -1,22 +1,18 @@
 from fastapi import FastAPI
-import subprocess
 import sqlite3
 import pandas as pd
 import os
-from database import DB_PATH
+from .database import DB_PATH
+from . import fetch_data
+from . import predict
 
 app = FastAPI(title="Gold Macro Forecast API")
 
 @app.get("/forecast")
 def get_forecast():
-    # 1. Her istek geldiğinde veriyi ve modeli çalıştır
-    import fetch_data
-    import predict
-    
     fetch_data.fetch_and_save_market_data()
     predict.run_forecast()
 
-    # 2. SQLite'tan en son üretilen tahminleri okuyup n8n'e dön
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("""

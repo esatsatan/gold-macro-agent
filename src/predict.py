@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from statsmodels.tsa.arima.model import ARIMA
 from arch import arch_model
-from database import DB_PATH
+from .database import DB_PATH
 
 def run_forecast():
     print("⏳ SQLite veritabanından geçmiş piyasa verileri yükleniyor...")

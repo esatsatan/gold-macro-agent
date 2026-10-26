@@ -19,5 +19,6 @@ RUN mkdir -p /app/data
 # FastAPI servisinin dış dünyadan istek alabilmesi için 8000 portunu açıyoruz
 EXPOSE 8000
 
-# Container ayağa kalktığında uvicorn ile FastAPI sunucusunu başlatıyoruz
+# PYTHONPATH ekleyerek src klasörünün modül olarak tanınmasını sağlıyoruz
+ENV PYTHONPATH=/app
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
